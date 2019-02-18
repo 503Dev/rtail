@@ -12,6 +12,13 @@
 
 `rtail` is a command line utility that grabs every line in `stdin` and broadcasts it over **UDP**. That's it. Nothing fancy. Nothing complicated. Tail log files, app output, or whatever you wish, using `rtail` broadcasting to an `rtail-server` – See multiple streams in the browser, in realtime.
 
+## New Feature Roadmap (2/18/2019)
+* Windows log agent
+* Ability to clear and delete streams
+* Simple REST API for adding logs remotely from any client
+* Simple authentication scheme for incoming requests
+* Add full customizable syntax highlight with custom-syntax-highligher (https://github.com/jgnewman/custom-syntax-highlighter)
+
 ## Installation
 
     $ npm install -g rtail
