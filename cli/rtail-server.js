@@ -10,6 +10,7 @@
 'use strict'
 
 const dgram = require('dgram')
+const bodyParser = require('body-parser');
 const app = require('express')()
 const serve = require('express').static
 const http = require('http').Server(app)
@@ -19,6 +20,7 @@ const debug = require('debug')('rtail:server')
 const webapp = require('./lib/webapp')
 const updateNotifier = require('update-notifier')
 const pkg = require('../package')
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /*!
  * inform the user of updates
@@ -142,3 +144,13 @@ http.listen(argv.webPort, argv.webHost)
 
 debug('UDP  server listening: %s:%s', argv.udpHost, argv.udpPort)
 debug('HTTP server listening: http://%s:%s', argv.webHost, argv.webPort)
+
+/*!
+ * Simple API to recv log lines
+ */
+ app.post('/rtail/add', (request, response) => {
+  const entryBody = request.body;
+  console.log(entryBody);
+});
+
+app.listen(3000, () => console.info('API listening for new tails on port 3000!'));
